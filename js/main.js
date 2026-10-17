@@ -136,8 +136,24 @@ function loadHistory() {
  */
 function renderHistory() {
     // Rensa tidigare visad historik
-
+historySection.textContent = "";
     // Skriv ut innehållet i history till DOM
+    history.forEach((card, index) => {
+        const cardDiv = document.createElement("div");
+        cardDiv.classList.add("history-card");
+        cardDiv.style.fontFamily = card.font;
+        
+        const nameElement = document.createElement("p");
+        nameElement.textContent = card.fullname;
+        const emailElement = document.createElement("p");
+        emailElement.textContent = card.email;
+        const phoneElement = document.createElement("p");
+        phoneElement.textContent = card.phone;
+        cardDiv.appendChild(nameElement);
+        cardDiv.appendChild(emailElement);
+        cardDiv.appendChild(phoneElement);
+        historySection.appendChild(cardDiv);
+    });
 }
 
 
