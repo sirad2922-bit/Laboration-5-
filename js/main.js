@@ -46,17 +46,18 @@ errors = [];
         errors.push("Telefonnummer är obligatoriskt.");
     }
     // Visa eventuella felmeddelanden
+displayErrors();
 
     // Returnera resultatet (true eller false) av valideringen
+ return errors.length === 0;
 }
-
 
 /**
  * Visar felmeddelanden på sidan.
  */
 function displayErrors() {
     // Rensa tidigare felmeddelanden
-
+    errorList.textContent= "";
     // Skriv ut aktuella felmeddelanden till DOM
 }
 
