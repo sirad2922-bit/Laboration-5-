@@ -35,7 +35,7 @@ const localStorageKey = "studentcardHistory";
  */
 function validateForm() {
     // Kontrollera formulärets obligatoriska fält
-errors = [];
+    errors = [];
     if (!fullnameInput.value.trim()) {
         errors.push("Fullständigt namn är obligatoriskt.");
     }
@@ -46,10 +46,10 @@ errors = [];
         errors.push("Telefonnummer är obligatoriskt.");
     }
     // Visa eventuella felmeddelanden
-displayErrors();
+    displayErrors();
 
     // Returnera resultatet (true eller false) av valideringen
- return errors.length === 0;
+    return errors.length === 0;
 }
 
 /**
@@ -57,7 +57,7 @@ displayErrors();
  */
 function displayErrors() {
     // Rensa tidigare felmeddelanden
-    errorList.textContent= "";
+    errorList.textContent = "";
     // Skriv ut aktuella felmeddelanden till DOM
     errors.forEach(error => {
         const item = document.createElement("li");
@@ -87,7 +87,7 @@ function createStudentCard() {
     previewFullname.style.fontFamily = cardData.font;
     previewEmail.style.fontFamily = cardData.font;
     previewPhone.style.fontFamily = cardData.font;
-    
+
 
     // Lägg till studentkortet i historiken
     history.unshift(cardData);
@@ -103,6 +103,7 @@ function createStudentCard() {
  */
 function saveHistory() {
     // Spara history i localStorage
+    localStorage.setItem(localStorageKey, JSON.stringify(history));
 }
 
 
@@ -111,10 +112,24 @@ function saveHistory() {
  */
 function loadHistory() {
     // Hämta eventuell sparad historik
-
+    const savedHistory = localStorage.getItem(localStorageKey);
     // Uppdatera history
+    if (savedHistory === null) {
+        history = [];
+        return;
+    }
+    try {
+        const parsed = JSON.parse(savedHistory);
+        if (Array.isArray(parsed)) {
+            history = parsed;
+        } else {
+            history = [];
+        }
+    } catch (error) {
+        console.error("Error parsing saved history:", error);
+        history = [];
+    }
 }
-
 
 /**
  * Visar historiken på sidan.
