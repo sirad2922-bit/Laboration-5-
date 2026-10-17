@@ -90,9 +90,11 @@ function createStudentCard() {
     
 
     // Lägg till studentkortet i historiken
-    history.push(cardData);
+    history.unshift(cardData);
 
     // Spara och uppdatera historiken
+    saveHistory();
+    renderHistory();
 }
 
 
