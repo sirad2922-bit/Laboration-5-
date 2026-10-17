@@ -1,7 +1,7 @@
 "use strict";
 /*
  * Laboration 5 - Studentkortsgenerator
- * Namn: DITT NAMN
+ * Namn: Sirad Ahmed
  */
 
 // Hämta element från DOM
@@ -27,14 +27,24 @@ let errors = [];
 
 // Array som innehåller sparade studentkort
 let history = [];
-
+// Historiken kommer att sparas i localStorage under nyckeln "studentcardHistory".
+const localStorageKey = "studentcardHistory";
 /**
  * Validerar formulärets inmatning.
  * @returns {boolean}
  */
 function validateForm() {
     // Kontrollera formulärets obligatoriska fält
-
+errors = [];
+    if (!fullnameInput.value.trim()) {
+        errors.push("Fullständigt namn är obligatoriskt.");
+    }
+    if (!emailInput.value.trim()) {
+        errors.push("E-postadress är obligatoriskt.");
+    }
+    if (!phoneInput.value.trim()) {
+        errors.push("Telefonnummer är obligatoriskt.");
+    }
     // Visa eventuella felmeddelanden
 
     // Returnera resultatet (true eller false) av valideringen
