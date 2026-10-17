@@ -59,7 +59,13 @@ function displayErrors() {
     // Rensa tidigare felmeddelanden
     errorList.textContent= "";
     // Skriv ut aktuella felmeddelanden till DOM
+    errors.forEach(error => {
+        const item = document.createElement("li");
+        item.textContent = error;
+        errorList.appendChild(item);
+    });
 }
+
 
 
 /**
@@ -67,10 +73,24 @@ function displayErrors() {
  */
 function createStudentCard() {
     // Hämta information från formuläret
+    const cardData = {
+        fullname: fullnameInput.value.trim(),
+        email: emailInput.value.trim(),
+        phone: phoneInput.value.trim(),
+        font: fontSelect.value
+    };
 
     // Uppdatera studentkortet
+    previewFullname.textContent = cardData.fullname;
+    previewEmail.textContent = cardData.email;
+    previewPhone.textContent = cardData.phone;
+    previewFullname.style.fontFamily = cardData.font;
+    previewEmail.style.fontFamily = cardData.font;
+    previewPhone.style.fontFamily = cardData.font;
+    
 
     // Lägg till studentkortet i historiken
+    history.push(cardData);
 
     // Spara och uppdatera historiken
 }
