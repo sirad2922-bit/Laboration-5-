@@ -180,8 +180,10 @@ previewPhone.style.fontFamily = "";
  */
 function deleteHistory() {
     // Radera sparad historik
-
+    localStorage.removeItem(localStorageKey);
     // Uppdatera history och visningen på sidan
+    history = [];
+    renderHistory();
 }
 
 
@@ -190,13 +192,30 @@ function deleteHistory() {
 // När formuläret skickas:
 // - validera inmatningen
 // - skapa studentkort om valideringen lyckas
-
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (validateForm()) {
+        createStudentCard();
+    }
+});
 
 // När användaren klickar på "Rensa"
+clearButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    clearForm();
+}
 
 
 // När användaren klickar på "Radera historik"
+deleteHistoryButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    deleteHistory();
+}
 
 
 // När sidan laddas:
 // - läs in och visa eventuell tidigare historik
+window.addEventListener("load", function () {
+    loadHistory();
+    renderHistory();
+}
