@@ -203,14 +203,14 @@ form.addEventListener("submit", function (event) {
 clearButton.addEventListener("click", function (event) {
     event.preventDefault();
     clearForm();
-}
+});
 
 
 // När användaren klickar på "Radera historik"
 deleteHistoryButton.addEventListener("click", function (event) {
     event.preventDefault();
     deleteHistory();
-}
+});
 
 
 // När sidan laddas:
@@ -218,4 +218,4 @@ deleteHistoryButton.addEventListener("click", function (event) {
 window.addEventListener("load", function () {
     loadHistory();
     renderHistory();
-}
+});
